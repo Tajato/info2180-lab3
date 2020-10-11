@@ -1,10 +1,12 @@
+
 window.onload = function () {
     var c = document.getElementById("board");
     var ca = c.getElementsByTagName("div");
     let circleTurns;
     const x_class = "X";
     const circle_class= "O";
-    let div;
+    let announceWinner = document.getElementById("status");
+    var button = document.getElementsByClassName("btn")[0];
     const winningCombinations = [
         [0,1,2],
         [3,4,5],
@@ -21,7 +23,6 @@ window.onload = function () {
         eachDiv.setAttribute("class","square");
     
     eachDiv.addEventListener("click",whenClicked,{once:true});
-
     
     
 }
@@ -56,7 +57,7 @@ window.onload = function () {
 
     function checkWinner() {
        
-        let announceWinner = document.getElementById("status");
+       
         // horizontal win
        if (ca[0].className == "square X" && ca[1].className == "square X" && ca[2].className == "square X") {
            announceWinner.classList.add("you-won")
@@ -146,6 +147,24 @@ if (ca[2].className == "square O" && ca[4].className == "square O" && ca[6].clas
     announceWinner.innerHTML = "Congratulations! O is the Winner!";
 }
 
+    }
+// Reset Game
+
+button.addEventListener("click",resetGame);
+function resetGame() {
+    for ( let j = 0; j < ca.length; j++) {
+    ca[j].innerHTML = '';
+    ca[j].classList.remove("X");
+    ca[j].classList.remove("O");
+    
+    announceWinner.classList.remove("you-won");
+    announceWinner.innerHTML = "Move your mouse over a square and click to play an X or an O";
+    }
+}
+
+
+
+
 
 
     
@@ -156,6 +175,7 @@ if (ca[2].className == "square O" && ca[4].className == "square O" && ca[6].clas
 
 
 
-    }
+    
 
 }
+
